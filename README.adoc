@@ -1,0 +1,65 @@
+= university-bachelor-semester-project-3(1)
+:cargo: link:https://doc.rust-lang.org/stable/cargo/getting-started/installation.html
+:naho: link:https://github.com/trueNAHO
+:repository-blob: link:https://github.com/trueNAHO/university-bachelor-semester-project-3/blob/master
+:rust-log: link:https://docs.rs/env_logger/0.10.1/env_logger/#enabling-logging
+:telnet: link:https://www.gnu.org/software/inetutils
+:university: link:https://github.com/trueNAHO/university
+
+:license: {repository-blob}/LICENSE
+:university-bachelor-semester-project-3-code-of-conduct-7: {repository-blob}/docs/code_of_conduct.adoc
+:university-bachelor-semester-project-3-contributing-7: {repository-blob}/docs/contributing.adoc
+
+== Name
+
+university-bachelor-semester-project-3 - University Bachelor Semester Project 3
+
+== Synopsis
+
+*cargo run*
+
+== Description
+
+{naho}[NAHO]'s University Bachelor Semester Project 3 (09.2023 – 02.2024).
+
+This high-performance Rust server concurrently handles connections, allowing
+clients to exchange messages and modify a shared state. Additionally, clients
+are notified of new connections and disconnections.
+
+== Usage
+
+Clients send messages line by line, and may alter the server's shared state.
+Actions are checked case-insensitively as follows:
+
+.Message-Based Actions
+|===
+| Message | Action
+
+| `down` or `j` | Move the sender down.
+| `left` or `h` | Move the sender to the left.
+| `right` or `l` | Move the sender to the right.
+| `up` or `k` | Move the sender up.
+|===
+
+== Examples
+
+To launch the server using {cargo}[`cargo`] with {rust-log}[`info` logging
+level], run:
+
+[,bash,subs="attributes"]
+----
+RUST_LOG=info cargo run
+----
+
+Then connect to the server's port using {telnet}[`telnet`] by running:
+
+[,bash]
+----
+telnet localhost <PORT>
+----
+
+== See Also
+
+{license}[License], {university}[NAHO's substantial university projects],
+{university-bachelor-semester-project-3-code-of-conduct-7}[university-bachelor-semester-project-3.code-of-conduct(7)],
+{university-bachelor-semester-project-3-contributing-7}[university-bachelor-semester-project-3.contributing(7)]
