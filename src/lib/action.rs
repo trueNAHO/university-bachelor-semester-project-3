@@ -21,10 +21,10 @@ impl FromStr for Action {
 
     fn from_str(s: &str) -> std::prelude::v1::Result<Self, Self::Err> {
         match s.trim().to_lowercase().as_str() {
-            "h" | "left" => Action::MoveLeft.pipe(Ok),
-            "j" | "down" => Action::MoveDown.pipe(Ok),
-            "k" | "up" => Action::MoveUp.pipe(Ok),
-            "l" | "right" => Action::MoveRight.pipe(Ok),
+            "a" | "h" | "left" => Action::MoveLeft.pipe(Ok),
+            "j" | "s" | "down" => Action::MoveDown.pipe(Ok),
+            "k" | "w" | "up" => Action::MoveUp.pipe(Ok),
+            "d" | "l" | "right" => Action::MoveRight.pipe(Ok),
 
             _ => ActionError::InvalidActionError.pipe(Err),
         }

@@ -35,10 +35,10 @@ Actions are checked case-insensitively as follows:
 |===
 | Message | Action
 
-| `down` / `j` | Move the sender down.
-| `left` / `h` | Move the sender to the left.
-| `right` / `l` | Move the sender to the right.
-| `up` / `k` | Move the sender up.
+| `down` / `s` / `j` | Move the sender down.
+| `left` / `a` / `h` | Move the sender to the left.
+| `right` / `d` / `l` | Move the sender to the right.
+| `up` / `w` / `k` | Move the sender up.
 |===
 
 == Examples
