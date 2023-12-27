@@ -74,14 +74,6 @@ impl Server {
                 loop {
                     select! {
                         read_line = buf_reader.read_line(&mut line) => match read_line {
-                            Err(err) => {
-                                err
-                                    .to_string()
-                                    .tap(|err| info!("{}: {}", err, socket_addr));
-
-                                line.clear();
-                            }
-
                             Ok(0) => {
                                 format!("Client disconnected: {}", socket_addr).pipe(|msg| {
                                     info!("{}", msg);
@@ -96,7 +88,7 @@ impl Server {
                                 return Ok(())
                             }
 
-                            _ => {
+                            Ok(_) => {
                                 broadcast_sender.send((
                                     socket_addr,
                                     match line.parse::<Action>() {
@@ -114,6 +106,14 @@ impl Server {
                                         Err(_) => line.to_owned(),
                                     },
                                 ))?;
+
+                                line.clear();
+                            }
+
+                            Err(err) => {
+                                err
+                                    .to_string()
+                                    .tap(|err| info!("{}: {}", err, socket_addr));
 
                                 line.clear();
                             }
