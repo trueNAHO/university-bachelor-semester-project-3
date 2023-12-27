@@ -12,12 +12,14 @@ use std::ops::Add;
 
 use crate::{action::Action, client::Client, lobby::Lobby};
 
+pub type Addr = String;
+
 pub struct Server {
-    addr: String,
+    addr: Addr,
 }
 
 impl Server {
-    pub fn new(addr: String) -> Self {
+    pub fn new(addr: Addr) -> Self {
         Self { addr }
     }
 

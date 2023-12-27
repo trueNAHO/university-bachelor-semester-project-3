@@ -7,12 +7,12 @@ use std::{
     sync::{Arc, Mutex},
 };
 
-use crate::{action::Action, client::Client};
+use crate::{action::Action, client::Client, server::Addr};
 
 #[derive(Clone, Educe)]
 #[educe(Default(new))]
 pub struct Lobby {
-    pub clients: Arc<Mutex<HashMap<String, Client>>>,
+    pub clients: Arc<Mutex<HashMap<Addr, Client>>>,
 }
 
 impl fmt::Display for Lobby {
@@ -26,7 +26,7 @@ impl fmt::Display for Lobby {
 }
 
 impl Lobby {
-    pub fn insert(&self, addr: String, client: Client) -> Option<Client> {
+    pub fn insert(&self, addr: Addr, client: Client) -> Option<Client> {
         self.clients
             .lock()
             .expect("Poisoned Mutex")
