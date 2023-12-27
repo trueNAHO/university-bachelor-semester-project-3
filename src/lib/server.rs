@@ -6,7 +6,7 @@ use tokio::{
     select, spawn,
     sync::broadcast,
 };
-use tracing::info;
+use tracing::{info, warn};
 
 use std::ops::Add;
 
@@ -113,7 +113,7 @@ impl Server {
                             Err(err) => {
                                 err
                                     .to_string()
-                                    .tap(|err| info!("{}: {}", err, socket_addr));
+                                    .tap(|err| warn!("{}: {}", err, socket_addr));
 
                                 line.clear();
                             }
