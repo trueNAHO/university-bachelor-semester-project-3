@@ -77,6 +77,8 @@ impl Server {
                     select! {
                         read_line = buf_reader.read_line(&mut line) => match read_line {
                             Ok(0) => {
+                                lobby.remove(socket_addr.to_string().as_str());
+
                                 format!("Client disconnected: {}", socket_addr).pipe(|msg| {
                                     info!("{}", msg);
 
@@ -84,8 +86,6 @@ impl Server {
                                         .send((socket_addr.to_owned(), msg.add("\n")))
                                         .ok();
                                 });
-
-                                lobby.remove(socket_addr.to_string().as_str());
 
                                 return Ok(())
                             }
