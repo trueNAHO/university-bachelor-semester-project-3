@@ -113,11 +113,11 @@ impl Server {
                             }
 
                             Err(err) => {
+                                line.clear();
+
                                 err
                                     .to_string()
                                     .tap(|err| warn!("{}: {}", err, socket_addr));
-
-                                line.clear();
                             }
                         },
 
